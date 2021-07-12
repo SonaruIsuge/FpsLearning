@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db5980182741f040a9a10ac403bfba2, type: 3}
   m_Name: RPG7
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: RPG7
   type: 0
-  throwForce: 0
-  throwExtraForce: 0
-  rotationForce: 0
-  animTime: 0
-  maxAmmo: 0
-  shotsPerSecond: 0
-  reloadSpeed: 0
-  hitForce: 0
-  damage: 0
-  range: 0
-  tapable: 0
-  kickbackForce: 0
-  resetSmooth: 0
-  scopePos: {x: 0, y: 0, z: 0}
-  defaultFov: 0
-  scopeFov: 0
-  fovSmooth: 0
+  throwForce: 2
+  throwExtraForce: 4
+  rotationForce: 80
+  animTime: 0.4
+  maxAmmo: 1
+  shotsPerSecond: 1
+  reloadSpeed: 5
+  hitForce: 100
+  damage: 100
+  range: 300
+  tapable: 1
+  kickbackForce: 1
+  resetSmooth: 8
+  scopePos: {x: 0.325, y: -0.075, z: 0.2}
+  defaultFov: 55
+  scopeFov: 20
+  fovSmooth: 11
   crossHair: {fileID: 0}
   scopeCrosshair: {fileID: 0}
