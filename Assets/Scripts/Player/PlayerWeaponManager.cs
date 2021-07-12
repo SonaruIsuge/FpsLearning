@@ -19,6 +19,9 @@ public class PlayerWeaponManager
     private WeaponPickDrop _heldWeapon;
     private IWeaponAction _weaponAction;
 
+    public int currentIndex;
+    private Dictionary<int, GameObject> equitMentDic;
+
     public event Action<IWeaponAction> OnCurrentWeaponChange;
 
     public PlayerWeaponManager(IInput input, Transform weaponHolder, Transform swayHolder, Transform playerCamera, Camera[] playerCams, CharacterProperty property)
