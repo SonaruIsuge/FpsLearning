@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 1487774384131766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4871155855958596}
   - {fileID: 4977263084664720}
@@ -321,10 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ce2990cabfcb349af2b0f29ee7ff0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 5
-  throwExtraForce: 11
-  rotationForce: 120
-  animTime: 0
+  weaponData: {fileID: 0}
   weaponGfxLayer: 0
   weaponGfxs: []
   gfxColliders:
@@ -332,18 +329,6 @@ MonoBehaviour:
   - {fileID: 1809678164249910164}
   - {fileID: 308032807213633748}
   - {fileID: 3920783832406915197}
-  maxAmmo: 0
-  shotsPerSecond: 0
-  reloadSpeed: 0
-  hitForce: 0
-  damage: 0
-  range: 0
-  tapable: 0
-  kickbackForce: 0
-  resetSmooth: 0
-  scopePos: {x: 0, y: 0, z: 0}
-  crossHair: {fileID: 0}
-  scopeCrosshair: {fileID: 0}
 --- !u!1 &1927369336514790
 GameObject:
   m_ObjectHideFlags: 0
