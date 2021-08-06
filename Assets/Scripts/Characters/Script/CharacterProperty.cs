@@ -25,6 +25,8 @@ public class CharacterProperty : ScriptableObject
     public float swaySize;
     public float swaySmooth;
 
-    
+    [Space()]
+    [Header("WeaponManagerment")]
+    public int maxEquipment;
 
 }

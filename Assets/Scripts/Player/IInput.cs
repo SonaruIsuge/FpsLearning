@@ -22,6 +22,9 @@ public interface IInput
     bool ExitScope {get; }
     bool Relaod {get; }
     bool Drop {get; }
+    bool Alpha1 {get; }
+    bool Alpha2 {get; }
+    bool Alpha3 {get; }
 
     Vector2 lookRotate{get; }
 

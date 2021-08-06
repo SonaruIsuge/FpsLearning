@@ -20,3 +20,4 @@ MonoBehaviour:
   pickupRadius: 0
   swaySize: 0.004
   swaySmooth: 25
+  maxEquipment: 3

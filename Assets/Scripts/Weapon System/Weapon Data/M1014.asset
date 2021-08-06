@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8db5980182741f040a9a10ac403bfba2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1054a1e36cbfd124a8aba860358452d1, type: 3}
   m_Name: M1014
   m_EditorClassIdentifier: 
   weaponName: M1014
@@ -18,11 +18,11 @@ MonoBehaviour:
   throwExtraForce: 7
   rotationForce: 100
   animTime: 0.3
+  damage: 30
   maxAmmo: 5
   shotsPerSecond: 4
   reloadSpeed: 3.5
   hitForce: 30
-  damage: 30
   range: 180
   tapable: 1
   kickbackForce: 0.4

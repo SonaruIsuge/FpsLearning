@@ -4,7 +4,7 @@ using TMPro;
 
 public class Weapon : MonoBehaviour
 {
-    public WeaponData weaponData;
+    public GunData weaponData;
     
     public int weaponGfxLayer;
     public GameObject[] weaponGfxs;

@@ -37,7 +37,9 @@ public class AmmoText : MonoBehaviour
     {
         if(currentWeapon != null)
         {
-            ammoText.text = currentWeapon.GetAmmo() + "/" + currentWeapon.GetData().maxAmmo;
+            var gunWeapon = currentWeapon as GunAction;
+            if(gunWeapon)
+                ammoText.text = currentWeapon.GetAmmo() + "/" + gunWeapon.Data.maxAmmo;
         }
         else
         {

@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8db5980182741f040a9a10ac403bfba2, type: 3}
-  m_Name: Ak74
+  m_Script: {fileID: 11500000, guid: 1054a1e36cbfd124a8aba860358452d1, type: 3}
+  m_Name: AK74
   m_EditorClassIdentifier: 
-  weaponName: Ak74
+  weaponName: AK74
   type: 0
   throwForce: 4
   throwExtraForce: 7
   rotationForce: 100
   animTime: 0.2
+  damage: 15
   maxAmmo: 25
   shotsPerSecond: 12
   reloadSpeed: 2.4
   hitForce: 10
-  damage: 15
   range: 200
   tapable: 0
   kickbackForce: 0.075

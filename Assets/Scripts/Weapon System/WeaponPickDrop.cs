@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class WeaponPickDrop : MonoBehaviour
@@ -31,20 +32,19 @@ public class WeaponPickDrop : MonoBehaviour
         if(weaponAction) weaponAction.enabled = false;
     }
 
-    private void Update()
+    public async void PickAnim()
     {
-        if(_held && _time < data.animTime)
+        while( _time < data.animTime)
         {
             _time += Time.deltaTime;
             _time = Mathf.Clamp(_time, 0f, data.animTime);
             var delta = -(Mathf.Cos(Mathf.PI * (_time / data.animTime)) - 1f) / 2f;
             transform.localPosition = Vector3.Lerp(_startPosition, Vector3.zero, delta);
             transform.localRotation = Quaternion.Lerp(_startRotation, Quaternion.identity, delta);
+
+            await Task.Yield();
         }
-        else if(_held)
-        {
-            if(weaponAction) weaponAction.enabled = true;
-        }
+        if(weaponAction) weaponAction.enabled = true;
     }
 
     public void PickUpWeapon(Transform weaponHolder, Transform playerCamera, Camera[] playerCams)
@@ -67,6 +67,7 @@ public class WeaponPickDrop : MonoBehaviour
         }
 
         _held = true;
+        PickAnim();
 
         if(weaponAction) weaponAction.SetPlayerParts(weaponHolder, playerCamera, playerCams);
     }

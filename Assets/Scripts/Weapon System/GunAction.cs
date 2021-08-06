@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GunAction : IWeaponAction
 {
-    public WeaponData data;
+    public GunData Data;
     
     private Transform weaponHolder;
     private Transform playerCamera;
@@ -18,7 +19,7 @@ public class GunAction : IWeaponAction
 
     private void Awake()
     {
-        _ammo = data.maxAmmo;
+        _ammo = Data.maxAmmo;
     }
     
     private void Update()
@@ -26,11 +27,11 @@ public class GunAction : IWeaponAction
         if(!_scoping)
         {
             transform.localRotation = Quaternion.identity;
-            transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, data.resetSmooth * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, Data.resetSmooth * Time.deltaTime);
 
             foreach (var cam in playerCams)
             {
-                cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, data.defaultFov, data.fovSmooth * Time.deltaTime);
+                cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, Data.defaultFov, Data.fovSmooth * Time.deltaTime);
             }
         }
     }
@@ -42,7 +43,7 @@ public class GunAction : IWeaponAction
 
     public override void OnLeftMouse()
     {
-        if(data.tapable) return;
+        if(Data.tapable) return;
 
         Fire();
     }
@@ -75,24 +76,20 @@ public class GunAction : IWeaponAction
 
 #region Fire
 
-    private void Fire()
+    private async void Fire()
     {
         if(_ammo <= 0 || _reloading || _shooting) return;
         _shooting = true;
         _ammo--;
-        transform.localPosition += new Vector3(0, 0, data.kickbackForce);
+        transform.localPosition += new Vector3(0, 0, Data.kickbackForce);
 
-        if(Physics.Raycast(playerCamera.position, playerCamera.forward, out var hitInfo, data.range, 1<<6 | 1<<7))
+        if(Physics.Raycast(playerCamera.position, playerCamera.forward, out var hitInfo, Data.range, 1<<6 | 1<<7))
         {
             var rb = hitInfo.transform.GetComponent<Rigidbody>();
-            if(rb != null) rb.velocity += playerCamera.forward * data.hitForce;
+            if(rb != null) rb.velocity += playerCamera.forward * Data.hitForce;
         }
-        
-        Invoke("ResetShooting", 1f / data.shotsPerSecond);
-    }
 
-    private void ResetShooting()
-    {
+        await Task.Delay(1000 / Data.shotsPerSecond);
         _shooting = false;
     }
 
@@ -100,18 +97,14 @@ public class GunAction : IWeaponAction
 
 #region Reload
 
-    private void Reload()
+    private async void Reload()
     {
-        if(_shooting || _ammo >= data.maxAmmo) return;
+        if(_ammo >= Data.maxAmmo || _reloading) return;
         
         _reloading = true;
-        Invoke("ReloadFinished", data.reloadSpeed);
-        
-    }
 
-    private void ReloadFinished()
-    {
-        _ammo = data.maxAmmo;
+        await Task.Delay((int)(Data.reloadSpeed * 1000));
+        _ammo = Data.maxAmmo;
         _reloading = false;
     }
 
@@ -125,11 +118,11 @@ public class GunAction : IWeaponAction
 
         _scoping = true;
         transform.localRotation = Quaternion.identity;
-        transform.localPosition = Vector3.Lerp(transform.localPosition, data.scopePos, data.resetSmooth * Time.deltaTime);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, Data.scopePos, Data.resetSmooth * Time.deltaTime);
 
         foreach (var cam in playerCams)
         {
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, data.scopeFov, data.fovSmooth * Time.deltaTime);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, Data.scopeFov, Data.fovSmooth * Time.deltaTime);
         }
     }
 
@@ -137,7 +130,7 @@ public class GunAction : IWeaponAction
     {
         _scoping = false;
         transform.localRotation = Quaternion.identity;
-        transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, data.resetSmooth * Time.deltaTime);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, Data.resetSmooth * Time.deltaTime);
     }
 
 #endregion
@@ -153,5 +146,4 @@ public class GunAction : IWeaponAction
 
 
     public override int GetAmmo() => _ammo;
-    public override WeaponData GetData() => data;
 }
