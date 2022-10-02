@@ -13,10 +13,10 @@ public class Player : MonoBehaviour
     public Transform playerCamera;
     public Camera[] playerCams;
 
-    private IInput playerInput;
-    private PlayerLook playerLook;
-    private PlayerMovement playerMovement;
-    private PlayerWeaponManager playerWeaponManager;
+    [SerializeField] private IInput playerInput;
+    [SerializeField] private PlayerLook playerLook;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerWeaponManager playerWeaponManager;
 
     private void OnEnable() 
     {

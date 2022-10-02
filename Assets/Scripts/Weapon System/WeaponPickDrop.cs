@@ -44,6 +44,9 @@ public class WeaponPickDrop : MonoBehaviour
 
             await Task.Yield();
         }
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        _time = 0;
         if(weaponAction) weaponAction.enabled = true;
     }
 
@@ -75,6 +78,9 @@ public class WeaponPickDrop : MonoBehaviour
     public void DropWeapon(Transform playerCamera)
     {
         if(!_held) return;
+
+        _startPosition = Vector3.zero;
+        _startRotation = Quaternion.identity;
 
         rb = transform.gameObject.AddComponent<Rigidbody>();
         rb.mass = 0.1f;

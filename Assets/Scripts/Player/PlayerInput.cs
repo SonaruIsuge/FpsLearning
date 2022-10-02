@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
 public class PlayerInput : IInput
 {
     public float Horizontal {get; private set;}
@@ -37,6 +38,10 @@ public class PlayerInput : IInput
         playerInputMaster.Player.Rotate.canceled += ctx => lookRotate = Vector2.zero;
         playerInputMaster.Player.Jump.performed += ctx => Jump = ctx.ReadValue<float>();
         playerInputMaster.Player.Jump.canceled += ctx => Jump = 0f;
+
+        playerInputMaster.Player.Attack.started += OnAttackStarted;
+        playerInputMaster.Player.Attack.performed += OnAttackPerformed;
+        playerInputMaster.Player.Attack.canceled += OnAttackCanceled;
     }
 
     public void ReadInput()
@@ -61,5 +66,20 @@ public class PlayerInput : IInput
         Alpha1 = Input.GetKeyDown(KeyCode.Alpha1);
         Alpha2 = Input.GetKeyDown(KeyCode.Alpha2);
         Alpha3 = Input.GetKeyDown(KeyCode.Alpha3);
+    }
+
+    private void OnAttackStarted(InputAction.CallbackContext ctx)
+    {
+        //Debug.Log("started");
+    }
+
+    private void OnAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        //Debug.Log("performed");
+    }
+
+    private void OnAttackCanceled(InputAction.CallbackContext ctx)
+    {
+        
     }
 }
